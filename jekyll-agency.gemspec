@@ -19,6 +19,6 @@ Gem::Specification.new do |spec|
   ####################
   # Mine, additional
   
-  spec.add_runtime_dependency "tzinfo-data", "~> 1.2021.5" # for timezone
+  spec.add_runtime_dependency "tzinfo-data", ">= 1.2021.5", "< 1.2026.0" # for timezone
   # spec.add_runtime_dependency "kramdown-parser-gfm", "~> 1.1.0"
 end
