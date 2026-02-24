@@ -1,0 +1,42 @@
+---
+layout: default
+---
+{% include nav.html %}
+
+{% if page.background == "grey" or page.background == "gray" %}
+<script>
+document.getElementById("page-top").className="bg-light";
+</script>
+{% endif %}
+
+<div class="container page-container" id="pagecontainer" >
+    <h1 class="page-title">{{ page.title }}</h1>
+    <div class="pt-1">
+        {{ page.date | date: '%B %d, %Y' }} 
+        {% if page.author_name %}
+            {% if site.locale and site.locale != "" and site.locale != nil %}
+                {% assign author = site.data.sitetext[site.locale].team.people 
+                    | where: 'name', page.author_name | first %}
+                {% if author %} 
+                    | Author: {{ author.name }} 
+                    <!-- <img width="24px" class="rounded-circle" src="{{ author.image }}" alt="">  -->
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="row py-3">   
+        <!-- Sidebar using Bootstrap 4 from https://stackoverflow.com/a/49436717/1451757 -->
+        <div class="col-md-3 order-2" id="sticky-sidebar">
+            <div class="sticky-top mt-5"  style="top: 80px">
+                <div class="nav flex-column mt-5">
+                    {% if page.sidebar_content %}
+                        {{ page.sidebar_content }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>     
+        <div class="col-md-9 page-content">
+            {{ content }}
+        </div>
+    </div>
+</div>

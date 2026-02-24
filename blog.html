@@ -1,0 +1,26 @@
+---
+layout: page
+title: Blog
+permalink: "blog/index.html"
+sidebar_content: 
+---
+<!-- Copied from archive.html of Shiori Jekyll Theme, which also uses Bootstrap 4: 
+ https://github.com/ellekasai/shiori/blob/524edfa1ea9c402d8b7c768ace93dff0a99fdc96/archive.html 
+-->
+<div class="blog-list">
+{% for post in site.posts %}
+{% comment %}
+  {% assign post_month_year = post.date | date: "%B %Y" %}
+  {% assign newer_post_month_year = post.next.date | date: "%B %Y" %}
+  {% if post_month_year != newer_post_month_year %}
+    <h3 class="section-header-archive">
+      {{ post_month_year }}
+    </h3>
+  {% endif %}
+{% endcomment %}
+  <p class="lead font-weight-bolder">
+    <a href="{{ post.url | prepend:site.baseurl}}" class="post-title-archive">{{ post.title }}</a>
+    <small class="text-muted">{{ post.date | date_to_string }}</small>
+  </p>
+{% endfor %}
+</div>
